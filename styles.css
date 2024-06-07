@@ -232,3 +232,39 @@ main {
     cursor: pointer;
 
 }
+
+/* Admin styles */
+.file-list {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.file-list h2 {
+    text-align: center;
+}
+
+.file-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.file-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.file-list a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.file-list a:hover {
+    text-decoration: underline;
+}
+
+.file-list a.delete {
+    color: red;
+}
