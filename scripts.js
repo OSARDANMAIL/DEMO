@@ -3,19 +3,19 @@ document.querySelectorAll('.upload-box').forEach(box => {
         event.preventDefault();
         box.classList.add('hover');
     });
- 
+
     box.addEventListener('dragleave', () => {
         box.classList.remove('hover');
     });
- 
+
     box.addEventListener('drop', event => {
         event.preventDefault();
         box.classList.remove('hover');
- 
+
         const input = box.querySelector('input[type="file"]');
         const fileList = box.querySelector('#' + box.id.replace('upload-box', 'file-list'));
         const files = event.dataTransfer.files;
- 
+
         const dt = new DataTransfer();
         for (let i = 0; i < input.files.length; i++) {
             dt.items.add(input.files[i]);
@@ -27,12 +27,12 @@ document.querySelectorAll('.upload-box').forEach(box => {
         input.files = dt.files;
     });
 });
- 
+
 document.querySelectorAll('input[type="file"]').forEach(input => {
     input.addEventListener('change', event => {
         const fileList = input.nextElementSibling.nextElementSibling;
         const files = event.target.files;
- 
+
         const dt = new DataTransfer();
         for (let i = 0; i < input.files.length; i++) {
             dt.items.add(input.files[i]);
@@ -44,22 +44,22 @@ document.querySelectorAll('input[type="file"]').forEach(input => {
         input.files = dt.files;
     });
 });
- 
+
 function addFileToList(file, container) {
     const fileItem = document.createElement('div');
     fileItem.className = 'file-item';
     fileItem.innerHTML = `
-<div>${file.name} ~ ${Math.round(file.size / 1024)} KB</div>
-<button type="button" onclick="removeFileFromList(this, '${file.name}')">delete</button>
+        <div>${file.name} ~ ${Math.round(file.size / 1024)} KB</div>
+        <button type="button" onclick="removeFileFromList(this, '${file.name}')">delete</button>
     `;
     container.appendChild(fileItem);
 }
- 
+
 function removeFileFromList(button, fileName) {
     const fileItem = button.parentElement;
     const container = fileItem.parentElement;
     const input = container.previousElementSibling.previousElementSibling;
- 
+
     const dt = new DataTransfer();
     for (let i = 0; i < input.files.length; i++) {
         if (input.files[i].name !== fileName) {
@@ -69,17 +69,21 @@ function removeFileFromList(button, fileName) {
     input.files = dt.files;
     container.removeChild(fileItem);
 }
- 
+
 function submitFiles() {
     const formData = new FormData();
-    const sections = ['file-2020', 'file-2021', 'file-2023-pl', 'file-balance'];
+    const sections = [
+        'file-2020', 'file-2021', 'file-2022', 'file-2023', 
+        'file-2020-pl', 'file-2021-pl', 'file-2022-pl', 'file-2023-pl', 
+        'file-balance'
+    ];
     sections.forEach(section => {
         const input = document.getElementById(section);
         for (let i = 0; i < input.files.length; i++) {
             formData.append(section + '[]', input.files[i]);
         }
     });
- 
+
     fetch('upload.php', {
         method: 'POST',
         body: formData
