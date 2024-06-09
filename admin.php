@@ -28,7 +28,7 @@ $files = array_diff(scandir($uploadDir), array('.', '..'));
 <body>
     <header>
         <div class="header-content">
-            <img src="images/new-logo.png" alt="Omega Logo" class="logo">
+            <img src="images/logo.png" alt="Omega Logo" class="logo">
             <h1>Uploaded Files</h1>
         </div>
     </header>
