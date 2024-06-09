@@ -17,17 +17,15 @@
 
 <body>
 
-    <header>
+<header>
+    <div class="header-content">
+        <img src="images/logo.png" alt="Omega Logo" class="logo">
+    </div>
+    <div class="header-title">
+        <h1>Tax Credit Qualification Review</h1>
+    </div>
+</header>
 
-        <div class="header-content">
-
-            <img src="images/new-logo.png" alt="Omega Logo" class="logo">
-
-            <h1>Tax Credit Qualification Review</h1>
-
-        </div>
-
-    </header>
 
     <main>
 
